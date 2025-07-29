@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My BookMark</title>
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+</head>
+<body class="container bg-green-light">
+    <header class="d-flex justify-content-between align-items-center mt-5">
+        <h2 class="display-6 text-pink fst-italic">My BookMark</h2>
+        <div>
+            <a href="/" class="btn btn-success btn-green">
+                <i class="bi bi-arrow-return-left"></i>
+            </a>
+        </div>
+    </header>
+    <div class="d-md-flex my-3">
+        <section class="col d-flex flex-column justify-content-center">
+            <h1 class="display-2 text-pink fst-italic fw-bold "><%= book.title %></h1>
+            <div class="w-100 d-flex justify-content-between">
+                <p class="alert alert-success">Author: <%= book.author %></p>
+                <p class="alert alert-success">Date read: <%= book.date_read.toISOString().split('T')[0] %></p>
+            </div>
+            <p class="text-green  fs-4"><%= book.summary %></p>
+            <p class="text-pink">Category: <%= book.category %>,   
+                <%= book.rate/2 %> <i class="bi bi-star-fill text-warning"></i>
+            </p> 
+        </section>
+        <section class="col d-flex flex-column justify-content-center align-items-center">
+            <img src="<%= `https://covers.openlibrary.org/b/isbn/${book.isbn}.jpg` %>" class="w-100 image">
+            <a href="<%= `/editBook/${book.id}` %>" class="btn btn-success btn-green mt-2">
+                Edit Book
+            </a>
+        </section>
+    </div>
+    <main class="my-5">
+        <div class="d-flex justify-content-between align-items-center mt-5 w-100">
+            <h2 class="display-6 text-pink fst-italic">Best Book Quotes</h2>
+            <div>
+                <a href="<%= `/createQuote/${book.id}` %>" class="btn btn-success btn-green">
+                    <i class="bi bi-plus fw-bold"></i>
+                </a>
+            </div>
+        </div>
+       <div class="mt-5">
+            <% if (quotes.length === 0) { %>
+                <div class="alert alert-success text-white w-100 fs-4"  role="alert">
+                    Ups! No quotes found. 
+                </div>
+            <%  } else { %>
+                <section class="d-flex w-100 justify-content-center flex-wrap gap-2">
+                    <% quotes.forEach(function(quote) { %>
+                        <div class="alert alert-success text-white w-100 fs-4 d-flex justify-content-between"  role="alert">
+                            <p><i class="bi bi-quote fs-3 me-3 text-pink"></i><%= quote.quote %></p>
+                            <div>
+                                <a href="/deleteQuote?<%= `quoteId=${quote.id}&bookId=${book.id}` %>" class="btn btn-danger">
+                                    <i class="bi bi-trash fw-bold"></i>
+                                </a>
+                            </div>
+                        </div>
+                    <% }); %>    
+                </section>
+            <% } %>
+       </div>
+    </main>
+
+
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,25 @@
+{
+  "name": "265booknotescapstonestone",
+  "version": "1.0.0",
+  "description": "This website was built with Express as part of the Capstone Project for The Complete 2024 Web Development Bootcamp, focusing on demonstrate ability to Create Read Update and Delete data in a PostgreSQL Database to persist data",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carolina0709/myBookMark.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Carolina0709/myBookMark/issues"
+  },
+  "homepage": "https://github.com/Carolina0709/myBookMark#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "pg": "^8.16.3"
+  }
+}

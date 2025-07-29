@@ -1,0 +1,66 @@
+.bg-green-light{
+    background-color: #E8F9E9!important;
+}
+.btn-green{
+    background-color: #BAF1A1!important;
+    border-color: #9DE3D0!important;
+    font-size: 20px!important;
+}
+
+.text-pink{
+    color: #F688BB!important;
+}
+
+.text-green{
+    color: #9DE3D0;
+}
+.image{
+    border-radius: 50%;
+    max-width: 400px;
+    max-height: 400px;
+}
+.input{
+    background-color: #E8F9E9!important;
+    border-color: #9DE3D0!important;
+    color: #9DE3D0!important;
+}
+input[type="radio"] + label{
+    border-color: #F688BB!important;
+    color: #F688BB!important;
+}
+input[type="radio"]:checked + label, .btn-pink {
+    background-color: #F688BB !important;
+    color: #ffffff !important;
+    border-color: #F688BB !important;
+}
+
+fieldset {
+    border: 1px solid #9DE3D0!important;
+}
+
+
+
+
+/*Estilos del tab*/
+
+.tab-view {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 0;
+  text-align: left;
+}
+.tab-view > input {
+  position: absolute;
+  display: none;
+}
+.tab-view > label {
+  border: 0;
+}
+
+.tab-view > label {
+  padding: 0 20px;
+  font-size: 15px;
+  line-height: 49px;
+}

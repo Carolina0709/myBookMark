@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My BookMark</title>
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+</head>
+<body class="container bg-green-light">
+    <header class="d-flex justify-content-between align-items-center mt-5">
+        <h2 class="display-6 text-pink fst-italic">Carolina González</h2>
+        <div>
+            <a href="/create" class="btn btn-success btn-green">
+                <i class="bi bi-plus fw-bold"></i>
+            </a>
+        </div>
+    </header>
+    <div class="d-md-flex my-3">
+        <section class="col d-flex flex-column justify-content-center">
+            <h1 class="display-2 text-pink fst-italic fw-bold ">My BookMark</h1>
+            <p class="text-green  fs-4">Each book includes a quick glance with short summaries and the best quotes that stood out to me. Use the ISBN to find it at your favorite library. This page grows with me, coming back from time to time is always a good idea.</p>
+        </section>
+        <section class="col d-flex justify-content-center align-items-center">
+            <img class="w-100 image" src="/images/me.jpeg" alt="Image of Carolina in a library">
+        </section>
+    </div>
+    <form class="tab-view tab-view-height-auto" action="/category" method="post">
+        <input type="submit" name="category" value="all" id="all">
+        <label for="all" class="btn btn-success btn-green me-2 mt-3">See all</label>
+        
+        <% categories.forEach(function(category) { %>
+        <input type="submit" name="category" value="<%= category.category %>" id="<%= category.category %>">
+        <label for="<%= category.category%>" class="btn btn-success btn-green me-2 mt-3">
+            <%= category.category %>
+        </label>
+        <% }); %>
+    </form>
+    <main class="d-flex my-5">
+        <% if (books.length === 0) { %>
+            <div class="alert alert-success text-white w-100 fs-4"  role="alert">
+                Ups! No books found. 
+            </div>
+        <%  } else { %>
+            <section class="d-flex w-100 justify-content-center flex-wrap gap-5">
+                <% books.forEach(function(book) { %>
+                    <div class="card mb-3 alert alert-success" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="<%= `https://covers.openlibrary.org/b/isbn/${book.isbn}.jpg` %>" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-8">
+                            <div class="card-body d-flex h-100 flex-column justify-content-between">
+                                <div>
+                                    <h5 class="card-title text-green">Title: <%= book.title%></h5>
+                                    <h5 class="card-text text-pink">By: <%= book.author %></h5>
+                                </div>
+                                <p><%= book.summary.length > 100 ? book.summary.substring(0, 100) + '...' : book.summary %></p>
+                                <div class="d-flex w-100 justify-content-end">
+                                    <a href="<%= `/see/${book.id}` %>" class="btn btn-primary btn-pink">
+                                        <i class="bi bi-eye fw-bold"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>    
+            </section>
+        <% } %>
+    </main>
+
+
+<%- include("partials/footer.ejs") %>
